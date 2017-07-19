@@ -1,0 +1,55 @@
+{
+  "name": "high",
+  "private": true,
+  "scripts": {
+    "start": "meteor run"
+  },
+  "eslintConfig": {
+    "plugins": [
+      "meteor"
+    ],
+    "extends": [
+      "airbnb/base",
+      "plugin:meteor/recommended"
+    ],
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "allowImportExportEverywhere": true
+    },
+    "rules": {
+      "meteor/eventmap-params": [
+        2,
+        {
+          "templateInstanceParamName": "instance"
+        }
+      ],
+      "import/no-unresolved": [
+        2,
+        {
+          "ignore": [
+            "^meteor/",
+            "^/imports/"
+          ]
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "babel-runtime": "^6.23.0",
+    "highcharts": "^5.0.12",
+    "highcharts-drilldown": "^0.1.2",
+    "highcharts-more": "^0.1.2",
+    "highcharts-treemap": "^0.1.2",
+    "meteor-node-stubs": "~0.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^2.13.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-import-resolver-meteor": "^0.2.4",
+    "eslint-plugin-import": "^1.9.2",
+    "eslint-plugin-jsx-a11y": "^1.5.3",
+    "eslint-plugin-meteor": "^3.6.0",
+    "eslint-plugin-react": "^5.2.2"
+  }
+}
