@@ -1,29 +1,21 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
+import { MyCollection } from '/imports/both/MyCollection';
 import Highcharts from 'highcharts';
 import './main.html';
 require('highcharts-more');
 require('highcharts/modules/drilldown')(Highcharts);
 require('highcharts/modules/treemap')(Highcharts);
 
-
 Template.chart.onCreated(function chartOnCreated() {
-  this.result = new ReactiveVar();
-  Meteor.call('loadData', (err, res) => {
-    if (err) {
-      // do something
-    } else {
-      console.log(res);
-      this.result.set(res);
-    }
-  });
+  this.subscribe('someData');
 });
 
 Template.chart.onRendered(function chartOnRendered() {
   this.autorun(() => {
-    const data = this.result.get();
-    if (data) {
+    if (this.subscriptionsReady()) {
+      const data = MyCollection.findOne();
       var points = [],
         categoryPoints,
         categoryVal,
